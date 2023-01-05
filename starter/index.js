@@ -86,140 +86,77 @@ var finances = [
     ['Jan-2017', 138230],
     ['Feb-2017', 671099]
 ];
+console.log("Financial Analyisis")
+console.log("-------------------")
 
 // The total number of months included in the dataset.
-console.log(finances.length)
+
+console.log("total months = " + finances.length)
 
 var financeNumber = finances.Length;
-// The net total amount of Profit/Losses over the entire period.
-// add everything
-// put in a loop
 
-console.log(finances[1][1])
+// TOTAL
 
-console.log(finances[5][1])
+var total = 0;
+
+for (let i = 0; i < finances.length; i++) {
+    total += finances[i][1];
+};
+
+console.log("finance total = " + total);
+
+
+// PROFIT ARRAY
 
 var financeProfit = [];
 
-for (let i = 0; i < finances.length; i++) {
-    financeProfit.push(finances[i][1]);
-}
+for (let a = 0; a < finances.length; a++) {
+    financeProfit.push(finances[a][1]);
+};
 
-console.log(financeProfit)
-
-// The average of the changes in Profit/Losses over the entire period.
-//calculate each change by subtracting this previous month to this month  ..(using push?)
+// FINANCE CHANGE ARRAY
 
 var financeChange = [];
 
-for (let i = 0; i < finances.length - 1; i++) {
-    financeChange.push(financeProfit[i] - financeProfit[i + 1]);
+for (let b = 0; b < finances.length - 1; b++) {
+    financeChange.push(financeProfit[b + 1] - financeProfit[b]);
 }
 
-console.log(financeChange)
+//TOTAL CHANGES
 
-// sum of all the changes
-
-var totalChange = 0;
+var tChange = 0;
 
 
-for (let i = 0; i < 85; i++) {
-    totalChange = financeChange[i] += totalChange;
+for (let c = 0; c < 85; c++) {
+    tChange += financeChange[c];
 }
 
-console.log(totalChange)
-// You will need to track what the total change in profits is from month to month and then find the average.
+console.log("total change = " + tChange)
 
+var averageChange = tChange / 85
 
-var total = 0
+console.log("Average Change = " + averageChange)
 
-for (let i = 0; i < finances.length; i++) {
-    total = finances[i][1] += total;
-}
+averageChange = averageChange.toFixed(2);
 
-console.log(total)
+// GREATEST PROFIT
 
+var greatestProfit = 0;
 
+for (let d = 0; d < finances.length - 1; d++)
+    if (greatestProfit < financeChange[d]) {
+        greatestProfit = financeChange[d]
+    }
 
+console.log("greatest Profit = " + greatestProfit);
 
+// GREATEST LOSS
 
+var greatestLoss = 0;
 
+for (let d = 0; d < finances.length - 1; d++)
+    if (greatestLoss > financeChange[d]) {
+        greatestLoss = financeChange[d]
+    }
 
-// (Total/Number of months) => total changes over months - 1
-        // maybe put all the changes in an array (push)
-
-// The greatest increase in profits (date and amount) over the entire period.
-    // start with 0
-        // check the last increase, if its bigger than zero keep track of the new biggest
-            // in a loop
-
-// The greatest decrease in losses (date and amount) over the entire period.
-    // check the last decrease, if its bigger than zero keep track of the new biggest
-        // in a loop
-
-// When you open your code in the browser your resulting analysis should look similar to the following:
-
-    // CONSOLE OUTPUT
-
-// Financial Analysis
-// ----------------------------
-// Total Months: 25
-// Total: $2561231
-// Average  Change: $-2315.12
-// Greatest Increase in Profits: Feb-2012 ($1926159)
-// Greatest Decrease in Profits: Sep-2013 ($-2196167)
-
-
-
-// The total number of months included in the dataset.
-// figure out how many rows there are in the finances variable
-// The net total amount of Profit/Losses over the entire period.
-// add everything together
-// probably a loop
-// The average of the changes in Profit/Losses over the entire period.
-// calculate each change by subtracting the previous month from this month
-// You will need to track what the total change in profits is from month to month and then find the average.
-// (Total/total number of changes) ===> total change/(months - 1)
-// maybe put all the changes into an array? using .push(...) ?
-// The greatest increase in profits (date and amount) over the entire period.
-// start with 0
-//   check the last increase. If it's bigger than 0, keep track of the new biggest one.
-//   in a loop
-// The greatest decrease in losses (date and amount) over the entire period.
-// console output format!
-// Financial Analysis
-// ----------------------------
-// Total Months: 25
-// Total: $2561231
-// Average  Change: $-2315.12
-// Greatest Increase in Profits: Feb-2012 ($1926159)
-// Greatest Decrease in Profits: Sep-2013 ($-2196167)
-
-// DANS PSEUDO CODE
-
-// 6:26
-// An example of calculating the average change over the first 5 months.
-// var finances = [
-// ['Jan-2010', 867884], // A
-// ['Feb-2010', 984655], // B
-// ['Mar-2010', 322013], // C
-// ['Apr-2010', -69417], // D
-// ['May-2010', 310503]  // E
-// To calculate the average change, I need to
-// 1. calculate the change from month to month
-// 2.    .... for each month
-//     First change is B - A: 984655 - 867884 =  116771
-//     Next  change is C - B: 322013 - 984655 = -662642
-//     Next  change is D - C: -69417 - 322013 = -391430
-//     Next  change is E - D: 310503 - -69417 =  379920
-// 3. Add all those changes together
-// 116771 + -662642 + -391430 + 379920 = -557381
-// 4. Divide by the total number of changes I calculated
-// -557381 / 4 = -139345.25
-// 6:31
-// OOH! How do I reference a value in a TWO-DIMENSIONAL array?
-// A two-dimensional array is an array that contains arrays. Like this:
-// var myArray = [ [ "Dan", 10 ], [ "Tucker", 42 ], [ "Hunter", 666 ], [ "Andrew", 99 ] ];
-// 6:31
-// If I use bracket notation, I can grab an individual element.
-// myArray[2] is [ "Hunter", 666 ]
+console.log("greatest Loss = " + greatestLoss);
